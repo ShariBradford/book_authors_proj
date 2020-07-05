@@ -1,0 +1,158 @@
+(djangoPy3Env) C:\Users\shari\OneDrive\Documents\Coding Dojo\python_stack\django\django_orm>django-admin startproject book_authors_proj
+
+(djangoPy3Env) C:\Users\shari\OneDrive\Documents\Coding Dojo\python_stack\django\django_orm>cd book_authors_proj
+
+(djangoPy3Env) C:\Users\shari\OneDrive\Documents\Coding Dojo\python_stack\django\django_orm\book_authors_proj>code .
+
+(djangoPy3Env) C:\Users\shari\OneDrive\Documents\Coding Dojo\python_stack\django\django_orm\book_authors_proj>python manage.py startapp book_authors_app
+
+(djangoPy3Env) C:\Users\shari\OneDrive\Documents\Coding Dojo\python_stack\django\django_orm\book_authors_proj>python manage.py makemigrations
+Migrations for 'book_authors_app':
+  book_authors_app\migrations\0001_initial.py
+    - Create model Author
+    - Create model Book
+
+(djangoPy3Env) C:\Users\shari\OneDrive\Documents\Coding Dojo\python_stack\django\django_orm\book_authors_proj>python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, book_authors_app, contenttypes, sessions
+Running migrations:
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying admin.0003_logentry_add_action_flag_choices... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying auth.0009_alter_user_last_name_max_length... OK
+  Applying auth.0010_alter_group_name_max_length... OK
+  Applying auth.0011_update_proxy_permissions... OK
+  Applying book_authors_app.0001_initial... OK
+  Applying sessions.0001_initial... OK
+
+(djangoPy3Env) C:\Users\shari\OneDrive\Documents\Coding Dojo\python_stack\django\django_orm\book_authors_proj>python manage.py makemigrations
+Migrations for 'book_authors_app':
+  book_authors_app\migrations\0002_book_author.py
+    - Add field author to book
+
+(djangoPy3Env) C:\Users\shari\OneDrive\Documents\Coding Dojo\python_stack\django\django_orm\book_authors_proj>python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, book_authors_app, contenttypes, sessions
+Running migrations:
+  Applying book_authors_app.0002_book_author... OK
+
+(djangoPy3Env) C:\Users\shari\OneDrive\Documents\Coding Dojo\python_stack\django\django_orm\book_authors_proj>python manage.py shell
+Python 3.8.3 (tags/v3.8.3:6f8c832, May 13 2020, 22:20:19) [MSC v.1925 32 bit (Intel)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from book_authors_app.models import Book, Author
+>>> Book.objects.create(title='C Sharp', desc = 'A book about C Sharp programming.')
+<Book object: C Sharp (1)>
+>>> Book.objects.create(title='Java', desc = 'A book about Java programming.')
+<Book object: Java (2)>
+>>> Book.objects.create(title='Python', desc = 'How Python programming rocks!')
+<Book object: Python (3)>
+>>> Book.objects.create(title='PHP', desc = 'A book about my old friend, PHP.')
+<Book object: PHP (4)>
+>>> Book.objects.create(title='Ruby', desc = 'A book about programming with Ruby.')
+<Book object: Ruby (5)>
+>>> Author.objects.create(first_name='Jane', last_name='Austen')
+<Author object: Jane Austen (1)>
+>>> Author.objects.create(first_name='Emily', last_name='Dickinson')
+<Author object: Emily Dickinson (2)>
+>>> Author.objects.create(first_name='Fyodor', last_name='Dostoevksy')
+<Author object: Fyodor Dostoevksy (3)>
+>>> Author.objects.create(first_name='William', last_name='Shakespeare')
+<Author object: William Shakespeare (4)>
+>>> Author.objects.create(first_name='Lau', last_name='Tzu')
+<Author object: Lau Tzu (5)>
+>>> ^C
+
+(djangoPy3Env) C:\Users\shari\OneDrive\Documents\Coding Dojo\python_stack\django\django_orm\book_authors_proj>python manage.py makemigrations
+Migrations for 'book_authors_app':
+  book_authors_app\migrations\0003_author_notes.py
+    - Add field notes to author
+
+(djangoPy3Env) C:\Users\shari\OneDrive\Documents\Coding Dojo\python_stack\django\django_orm\book_authors_proj>python manage.py shell
+Python 3.8.3 (tags/v3.8.3:6f8c832, May 13 2020, 22:20:19) [MSC v.1925 32 bit (Intel)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from book_authors_app.models import Book,Author
+>>> ^C
+(djangoPy3Env) C:\Users\shari\OneDrive\Documents\Coding Dojo\python_stack\django\django_orm\book_authors_proj>python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, book_authors_app, contenttypes, sessions
+Running migrations:
+  Applying book_authors_app.0003_author_notes... OK
+
+(djangoPy3Env) C:\Users\shari\OneDrive\Documents\Coding Dojo\python_stack\django\django_orm\book_authors_proj>python manage.py shell
+Python 3.8.3 (tags/v3.8.3:6f8c832, May 13 2020, 22:20:19) [MSC v.1925 32 bit (Intel)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from book_authors_app.models import Book,Author
+>>> c_sharp_book = Book.objects.get(id=1)
+>>> c_sharp_book.title = 'C#'
+>>> c_sharp_book.save()
+>>> Book.objects.get(id=1)
+<Book object: C# (1)>
+>>> shakespeare_author = Author.objects.get(id=4)
+>>> shakespeare_author.first_name='Bill'
+>>> shakespeare_author.save()
+>>> Author.objects.get(id=4)
+<Author object: Bill Shakespeare (4)>
+>>> java_book = Book.objects.get(id=2)
+>>> java_book
+<Book object: Java (2)>
+>>> Author.objects.first().books.add(c_sharp_book)
+>>> Author.objects.first().books.add(java_book)
+>>> Book.objects.filter(id__lte=2)
+<QuerySet [<Book object: C# (1)>, <Book object: Java (2)>]>
+>>> Author.objects.get(id=2).books.add(c_sharp_book)
+>>> Author.objects.get(id=2).books.add(java_book)
+>>> python_book=Book.objects.get(id=3)
+>>> Author.objects.get(id=2).books.add(python_book)
+>>> for book in Book.objects.filter(id__lte=4):
+...     book.authors.add(Author.objects.get(id=3))
+...
+Traceback (most recent call last):
+  File "<console>", line 2, in <module>
+AttributeError: 'Book' object has no attribute 'authors'
+>>> for book in Book.objects.filter(id__lte=4):
+...     book.author.add(Author.objects.get(id=3))
+...
+>>> Author.objects.get(id=3).books
+<django.db.models.fields.related_descriptors.create_forward_many_to_many_manager.<locals>.ManyRelatedManager object at 0x00D320B8>
+>>> Author.objects.get(id=3).books.all()
+<QuerySet [<Book object: C# (1)>, <Book object: Java (2)>, <Book object: Python (3)>, <Book object: PHP (4)>]>
+>>> for book in Book.objects.all():
+...     book.author.add(Author.objects.get(id=4))
+...
+>>> Book.objects.get(id=3).authors.all()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: 'Book' object has no attribute 'authors'
+>>> Book.objects.get(id=3).author.all()
+<QuerySet [<Author object: Emily Dickinson (2)>, <Author object: Fyodor Dostoevksy (3)>, <Author object: Bill Shakespeare (4)>]>
+>>> Book.objects.get(id=3).author.remove(Book.objects.get(id=3).author.first())
+>>> Book.objects.get(id=3).author.all()
+<QuerySet [<Author object: Fyodor Dostoevksy (3)>, <Author object: Bill Shakespeare (4)>]>
+>>> Book.objects.get(id=2).author.add(Author.objects.first())
+>>> Book.objects.get(id=2).author.all()
+<QuerySet [<Author object: Jane Austen (1)>, <Author object: Emily Dickinson (2)>, <Author object: Fyodor Dostoevksy (3)>, <Author object: Bill Shakespeare (4)>]>
+>>> Book.objects.get(id=2).author.remove(Author.objects.first())
+>>> Book.objects.get(id=2).author.all()
+<QuerySet [<Author object: Emily Dickinson (2)>, <Author object: Fyodor Dostoevksy (3)>, <Author object: Bill Shakespeare (4)>]>
+>>> Book.objects.get(id=2).author.add(Author.objects.last())
+>>> Book.objects.get(id=2).author.all()
+<QuerySet [<Author object: Emily Dickinson (2)>, <Author object: Fyodor Dostoevksy (3)>, <Author object: Bill Shakespeare (4)>, <Author object: Lau Tzu (5)>]>
+>>> Author.objects.get(id=3).books.all()
+<QuerySet [<Book object: C# (1)>, <Book object: Java (2)>, <Book object: Python (3)>, <Book object: PHP (4)>]>
+>>> Book.objects.last().author.all()
+<QuerySet [<Author object: Bill Shakespeare (4)>]>
+>>> ^C
+(djangoPy3Env) C:\Users\shari\OneDrive\Documents\Coding Dojo\python_stack\django\django_orm\book_authors_proj>
